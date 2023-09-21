@@ -1,7 +1,148 @@
 ---
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-layout: home
-author_profile: true
+title: test!
+layout: page
+permalink: /index.html
 ---
+
+<style>
+    h1{
+        margin-left: 5vw;
+        margin-top: 15vh;
+        padding-bottom: 20vh;
+    }
+
+    p{
+        font-size: min(1, 1.5vw);
+    }
+
+    .p1{
+        margin-left: 40vw;
+        font-family: 'Roboto Mono', monospace;
+        margin-bottom: 10vh;
+        font-size: min(1.2em, 3vw);
+    }
+
+    .recent_post{
+      display: flex;
+      flex-direction: column;
+      width: fit-content;
+      height: fit-content;
+      margin-top: 20vh;
+      margin-left: 15vw;
+      width: 80vw;
+    }
+
+    .recent_post_text{
+      width: auto;
+      font-family: 'Roboto Mono', monospace;
+      font-size: min(1.2em, 3vw);
+    }
+
+    .post{
+        display: flex;
+        margin-right: auto;
+        margin-bottom: 30px;
+        height: 10vh; /* keep same as .cover max-width, ensures album cover never taller than date */
+        width: auto;
+    }
+
+    .title{
+        font-size: min(2em, 3.5vw);
+        text-align: center;
+        margin: 30px;
+    }
+
+    .album{
+        display: flex;
+        flex-direction: column;
+        flex-basis: initial;
+        justify-content: space-between;
+        height: auto;
+        width: auto;
+        max-height: 20vh;
+    }
+
+    .album_title{
+        font-size: min(1.25em, 3.5vw);
+        float: left;
+        margin-top: -5px;
+        flex-basis: auto;
+    }
+
+    .artist{
+        font-size: min(1em, 2.5vw);
+        text-align: left;
+    }
+
+    .quote{
+        color:rgb(109, 109, 109);
+        flex-basis: initial;
+        font-size: min(1.25em, 3.5vw);
+    }
+
+    .date{
+        font-size: min(1em, 3vw);
+        flex-basis: initial;
+    }
+
+    .cover{
+        flex-basis: initial;
+        margin-right: 10px;
+        height: 100%;
+        width: auto;
+        max-width: 20vw;
+    }
+
+    img{
+        max-height:100%;
+        max-width: 20vw;
+    }
+
+    .p{
+        font-size: min(1.1em,1.2rem);
+    }
+
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 30px;
+        width: 100%;
+        text-align: center;
+    }
+  
+</style>
+
+<h1> i don't know how i should begin this conversation </h1>
+
+<div class="p1">i review music albums here. you can see my recent posts or search for a specific album.</div>
+
+<div class="recent">
+    {% for post in site.posts limit:1 %}
+    <div class="recent_post">
+      <div class="recent_post_text">
+        Most Recent Post:
+      </div>
+      <div class="post">
+          <div class="cover">
+            <img src="{{post.album_cover}}">
+          </div>
+      
+          <div class="album">
+            <div class="album"> <!--kinda disguisting? lol-->
+              <a class="album_title" href="{{ post.url }}">{{ post.title }}</a>
+      
+              <div class="artist">{{ post.album_artist }}</div>
+            </div>
+      
+            <div class="quote">
+              {{ post.quote }}
+            </div>
+      
+            <div class="date">
+              <span>{{ post.date | date: "%Y %B %d" }}</span>
+            </div>
+          </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

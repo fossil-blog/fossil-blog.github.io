@@ -1,0 +1,146 @@
+---
+layout: page
+permalink: recent_posts/index.html
+---
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+  head,body,html{
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  a, p, ul li, ol li, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto Mono', monospace;
+    padding: 0px;
+  }
+
+  h1{
+    margin-bottom: -16px;
+  }
+  
+  .title{
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 30px;
+  }
+
+  .post{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    max-height: 18vh; /* keep same as .cover max-width, ensures album cover never taller than date */
+    max-width: 50vw;
+    min-width: 385px;
+  }
+
+  .cover{
+    flex-basis: 0;
+    margin-right: 10px;
+    height: 100%;
+    /* width: auto; */
+    max-width: 20vw;
+    height: auto;
+    width: 18vh;
+    max-height: 20vh;
+  }
+
+  .album{
+    display: flex;
+    flex-direction: column;
+    flex-basis: initial;
+    justify-content: space-between;
+    height: auto;
+    width: 100%;
+    max-height: 20vh;
+  }
+  
+  .album_title{
+    font-size: min(1.6em, 4vw);
+    float: left;
+    margin-top: -5px;
+    flex-basis: auto;
+  }
+
+  .artist{
+    font-size: min(1.2em, 3vw);
+    text-align: left;
+  }
+
+  img{
+    max-height:100%;
+    max-width: 20vw;
+  }
+
+  .quote{
+    color:rgb(109, 109, 109);
+    flex-basis: initial;
+    font-size: min(1.1em, 3.5vw);
+  }
+
+  .p{
+    font-size: min(1.1em,1.2rem);
+  }
+
+  .date{
+    font-size: min(1.2em, 2.5vw);
+    flex-basis: initial;
+  }
+
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+  }
+</style>
+
+<div class="title">
+  Recent Posts
+</div>
+
+<!-- This loops through the paginated posts -->
+{% for post in paginator.posts %}
+  <div class="post">
+    <div class="cover">
+      <img src="{{post.album_cover}}">
+    </div>
+
+    <div class="album">
+      <div class="album"> <!--kinda disguisting? lol-->
+        <a class="album_title" href="{{ post.url }}">{{ post.title }}</a>
+
+        <div class="artist">{{ post.album_artist }}</div>
+      </div>
+
+      <div class="quote">
+        {{ post.quote }}
+      </div>
+
+      <div class="date">
+        <span>{{ post.date | date: "%Y %B %d" }}</span>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+
+<!-- Pagination links -->
+<div class="pagination footer">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path }}" class="previous">
+      Previous
+    </a>
+  {% else %}
+    <span class="previous">Previous</span>
+  {% endif %}
+  <span class="page_number ">
+    Page: {{ paginator.page }} of {{ paginator.total_pages }}
+  </span>
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path }}" class="next">Next</a>
+  {% else %}
+    <span class="next ">Next</span>
+  {% endif %}
+</div>
