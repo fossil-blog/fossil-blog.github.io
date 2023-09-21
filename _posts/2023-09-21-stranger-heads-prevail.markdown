@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Stranger Heads Prevail"
-date: "2023-09-14"
+date: "2023-09-21"
 album_title: "Stranger Heads Prevail"
 album_artist: "Thank You Scientist"
 album_cover: "../../../../../../assets/stranger_heads_prevail.jpg"
